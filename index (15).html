@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Djerba Travel</title>
+<meta name="description" content="Discover Djerba Island Tunisia">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#0077B6;--pd:#023E8A;--pl:#90E0EF;--s:#F4A261;--a:#E76F51;--sand:#FDF6EC;--w:#fff;--d:#1A1A2E;--g:#6B7280;--lt:#F3F4F6;--sea:linear-gradient(135deg,#0077B6,#00B4D8,#90E0EF);--sun:linear-gradient(135deg,#F4A261,#E76F51);--sh:0 10px 40px rgba(0,0,0,.1);--shl:0 20px 60px rgba(0,0,0,.15);--r:20px;--rs:12px;--tr:all .4s cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--sand);color:var(--d);overflow-x:hidden;line-height:1.8}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
+
+.loader{position:fixed;inset:0;z-index:9999;background:var(--pd);display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+.loader.done{opacity:0;visibility:hidden}
+.loader-c{text-align:center;color:#fff}
+.loader-c .palm{font-size:4rem;animation:bnc 1s infinite}
+.loader-c p{margin-top:15px;font-size:1.2rem;font-weight:600}
+@keyframes bnc{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+
+.nav{position:fixed;top:0;width:100%;z-index:1000;padding:18px 0;transition:var(--tr)}
+.nav.sc{background:rgba(255,255,255,.97);backdrop-filter:blur(20px) saturate(180%);box-shadow:0 1px 30px rgba(0,0,0,.08);padding:12px 0}
+.nw{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.7rem;font-weight:900;color:var(--w);transition:var(--tr)}
+.nav.sc .logo{color:var(--pd)}
+.logo i{color:var(--s);font-style:normal}
+.nm{display:flex;align-items:center;gap:28px}
+.nm a{color:rgba(255,255,255,.9);font-weight:600;font-size:.92rem;transition:var(--tr);position:relative;padding:5px 0}
+.nav.sc .nm a{color:var(--d)}
+.nm a::after{content:'';position:absolute;bottom:0;right:0;width:0;height:2.5px;background:var(--sun);border-radius:2px;transition:var(--tr)}
+.nm a:hover::after{width:100%}
+.nm a:hover{color:var(--s)}
+.ls{display:flex;gap:3px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:50px;padding:3px;border:1px solid rgba(255,255,255,.2)}
+.nav.sc .ls{background:var(--lt);border-color:#e5e7eb}
+.lb{padding:6px 14px;border:none;border-radius:50px;cursor:pointer;font-size:.78rem;font-weight:800;background:transparent;color:rgba(255,255,255,.8);transition:var(--tr);font-family:'Cairo';letter-spacing:.5px}
+.nav.sc .lb{color:var(--g)}
+.lb.on{background:var(--sun);color:#fff!important;box-shadow:0 4px 15px rgba(231,111,81,.3)}
+.burger{display:none;flex-direction:column;cursor:pointer;gap:6px;background:none;border:none;padding:5px}
+.burger span{width:26px;height:2.5px;background:var(--w);border-radius:3px;transition:var(--tr)}
+.nav.sc .burger span{background:var(--d)}
+
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--w);background:linear-gradient(160deg,rgba(2,62,138,.75),rgba(0,119,182,.55),rgba(0,180,216,.4)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80') center/cover no-repeat fixed}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:150px;background:linear-gradient(transparent,var(--sand))}
+.hi{position:relative;z-index:2;padding:0 20px;max-width:800px}
+.ht{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);backdrop-filter:blur(15px);padding:10px 28px;border-radius:50px;font-size:.95rem;margin-bottom:25px;border:1px solid rgba(255,255,255,.25);animation:fl 3.5s ease-in-out infinite}
+.hero h1{font-size:clamp(2.8rem,8vw,5.5rem);font-weight:900;line-height:1.15;margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,.25)}
+.hero h1 em{font-style:normal;color:var(--s)}
+.hero .hi>p{font-size:clamp(1.05rem,2.5vw,1.35rem);max-width:620px;margin:0 auto 40px;opacity:.92;line-height:1.9}
+.hbs{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{padding:15px 38px;border-radius:50px;font-weight:700;font-size:1rem;transition:var(--tr);display:inline-flex;align-items:center;gap:10px;font-family:'Cairo';cursor:pointer;border:none}
+.bs{background:var(--sun);color:#fff;box-shadow:0 8px 30px rgba(231,111,81,.35)}
+.bs:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(231,111,81,.45)}
+.bg{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.5);backdrop-filter:blur(10px)}
+.bg:hover{background:#fff;color:var(--pd);transform:translateY(-4px)}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.stb{display:grid;grid-template-columns:repeat(4,1fr);max-width:1000px;margin:-70px auto 0;position:relative;z-index:10;background:var(--w);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.st{text-align:center;padding:30px 15px;border-left:1px solid var(--lt);transition:var(--tr)}
+[dir="ltr"] .st{border-left:none;border-right:1px solid var(--lt)}
+.st:last-child{border:none}
+.st:hover{background:var(--sand)}
+.stn{font-size:2.3rem;font-weight:900;background:var(--sea);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stl{color:var(--g);font-size:.88rem;margin-top:3px}
+
+section{padding:100px 20px}
+.sh{text-align:center;margin-bottom:65px}
+.sh h2{font-size:clamp(2rem,4.5vw,3rem);color:var(--pd);margin-bottom:12px;font-weight:900}
+.sh p{color:var(--g);font-size:1.1rem;max-width:550px;margin:0 auto}
+.sh .bar{width:50px;height:4px;background:var(--sun);margin:18px auto;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto}
+
+.abs{background:var(--w)}
+.abg{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.abi{position:relative;border-radius:var(--r);overflow:hidden;box-shadow:var(--shl)}
+.abi img{width:100%;height:450px;object-fit:cover;transition:transform .6s}
+.abi:hover img{transform:scale(1.06)}
+.abi .bf{position:absolute;bottom:25px;left:25px;background:var(--sun);color:#fff;padding:12px 24px;border-radius:50px;font-weight:800;font-size:.92rem;box-shadow:0 8px 25px rgba(231,111,81,.3)}
+.abt h3{font-size:2rem;color:var(--pd);margin-bottom:20px;line-height:1.4}
+.abt p{color:var(--g);margin-bottom:18px;font-size:1.05rem;line-height:2}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.fi2{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.98rem;color:var(--d)}
+.fi2 .ic{width:46px;height:46px;background:var(--sand);border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+
+.plg{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:30px}
+.pc{background:var(--w);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:var(--tr)}
+.pc:hover{transform:translateY(-12px);box-shadow:var(--shl)}
+.pc .ib{overflow:hidden;position:relative;height:230px}
+.pc img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.pc:hover img{transform:scale(1.1)}
+.pc .tg{position:absolute;top:16px;right:16px;background:var(--sun);color:#fff;padding:6px 16px;border-radius:50px;font-size:.78rem;font-weight:800}
+[dir="ltr"] .pc .tg{right:auto;left:16px}
+.pc .inf{padding:28px}
+.pc .inf h3{font-size:1.3rem;color:var(--pd);margin-bottom:10px}
+.pc .inf p{color:var(--g);font-size:.95rem;line-height:1.8}
+.pc .stars{margin-top:14px;color:var(--s);font-weight:700;font-size:.9rem}
+
+.acs{background:var(--w)}
+.acg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:25px}
+.ac{background:var(--sand);border-radius:var(--r);padding:40px 28px;text-align:center;transition:var(--tr);border:2px solid transparent;position:relative;overflow:hidden}
+.ac::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--sea);transform:scaleX(0);transition:var(--tr);transform-origin:right}
+[dir="ltr"] .ac::before{transform-origin:left}
+.ac:hover::before{transform:scaleX(1)}
+.ac:hover{border-color:var(--pl);transform:translateY(-8px);box-shadow:var(--sh)}
+.aci{font-size:3.2rem;margin-bottom:18px}
+.ac h3{color:var(--pd);margin-bottom:10px;font-size:1.15rem}
+.ac p{color:var(--g);font-size:.92rem}
+
+.galg{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,260px);gap:14px}
+.gi{border-radius:var(--r);overflow:hidden;position:relative;cursor:pointer}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gi:hover img{transform:scale(1.12)}
+.gi .go{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.75));display:flex;align-items:flex-end;padding:22px;opacity:0;transition:var(--tr)}
+.gi:hover .go{opacity:1}
+.gi .go span{color:#fff;font-weight:700;font-size:1.1rem}
+
+.cos{background:var(--w)}
+.cog{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.cf{display:flex;flex-direction:column;gap:22px}
+.cf input,.cf textarea{width:100%;padding:16px 22px;border:2px solid var(--lt);border-radius:var(--rs);font-family:'Cairo';font-size:1rem;transition:var(--tr);background:var(--lt)}
+.cf input:focus,.cf textarea:focus{outline:none;border-color:var(--p);background:var(--w);box-shadow:0 0 0 4px rgba(0,119,182,.08)}
+.cf textarea{height:150px;resize:vertical}
+.cc{display:flex;flex-direction:column;gap:22px}
+.cd{background:var(--sand);padding:28px;border-radius:var(--r);display:flex;align-items:center;gap:22px;transition:var(--tr)}
+.cd:hover{transform:translateX(-8px);box-shadow:var(--sh)}
+[dir="ltr"] .cd:hover{transform:translateX(8px)}
+.cd .ci{width:58px;height:58px;background:var(--sea);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 8px 20px rgba(0,119,182,.2)}
+.cd h4{color:var(--pd);margin-bottom:4px;font-size:1.05rem}
+.cd p{color:var(--g);font-size:.92rem}
+
+.ms{padding:0}
+.ms iframe{width:100%;height:400px;border:none;filter:saturate(.8) contrast(1.1)}
+
+footer{background:var(--d);color:var(--w);padding:70px 20px 30px}
+.ftg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:45px;margin-bottom:50px}
+.ftc h3{font-size:1.15rem;margin-bottom:18px;color:var(--s)}
+.ftc p{color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.9}
+.ftc a{color:rgba(255,255,255,.65);display:block;font-size:.93rem;padding:4px 0;transition:var(--tr)}
+.ftc a:hover{color:var(--s);padding-right:8px}
+[dir="ltr"] .ftc a:hover{padding-right:0;padding-left:8px}
+.soc{display:flex;gap:10px;margin-top:20px}
+.soc a{width:44px;height:44px;background:rgba(255,255,255,.08);border-radius:var(--rs);display:flex;padding:0;align-items:center;justify-content:center;font-size:1.2rem;transition:var(--tr)}
+.soc a:hover{background:var(--sun);transform:translateY(-4px)}
+.ftb{text-align:center;padding-top:35px;border-top:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-size:.88rem}
+
+.tot{position:fixed;bottom:30px;left:30px;width:52px;height:52px;background:var(--sea);color:#fff;border:none;border-radius:50%;font-size:1.4rem;cursor:pointer;opacity:0;visibility:hidden;transition:var(--tr);box-shadow:0 8px 25px rgba(0,119,182,.35);z-index:999}
+[dir="ltr"] .tot{left:auto;right:30px}
+.tot.show{opacity:1;visibility:visible}
+.tot:hover{transform:translateY(-5px) scale(1.05)}
+
+.rv{opacity:0;transform:translateY(50px);transition:all .9s cubic-bezier(.4,0,.2,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+.at{position:fixed;bottom:30px;right:30px;z-index:998;width:52px;height:52px;background:var(--sun);color:#fff;border:none;border-radius:50%;font-size:1.3rem;cursor:pointer;box-shadow:0 8px 25px rgba(231,111,81,.35);transition:var(--tr)}
+[dir="ltr"] .at{right:auto;left:30px}
+.at:hover{transform:scale(1.1)}
+.obg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1999;opacity:0;visibility:hidden;transition:var(--tr)}
+.obg.show{opacity:1;visibility:visible}
+.ap{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:#fff;z-index:2000;box-shadow:-5px 0 40px rgba(0,0,0,.15);transition:var(--tr);overflow-y:auto;padding:30px}
+[dir="ltr"] .ap{right:auto;left:-420px}
+.ap.open{right:0}
+[dir="ltr"] .ap.open{left:0}
+.ap h2{color:var(--pd);margin-bottom:25px;font-size:1.4rem}
+.ap .ca{position:absolute;top:15px;left:15px;background:var(--lt);border:none;width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;transition:var(--tr)}
+[dir="ltr"] .ap .ca{left:auto;right:15px}
+.ap .ca:hover{background:#EF4444;color:#fff}
+.adg{margin-bottom:20px}
+.adg label{display:block;font-weight:700;margin-bottom:8px;color:var(--d);font-size:.9rem}
+.adg input{width:100%;padding:12px 16px;border:2px solid var(--lt);border-radius:10px;font-family:'Cairo';font-size:.95rem;transition:var(--tr)}
+.adg input:focus{outline:none;border-color:var(--p)}
+.asv{width:100%;padding:14px;background:var(--sea);color:#fff;border:none;border-radius:10px;font-family:'Cairo';font-weight:700;font-size:1rem;cursor:pointer;transition:var(--tr);margin-bottom:15px}
+.asv:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,119,182,.3)}
+.amsg{text-align:center;color:#10B981;font-weight:700;padding:10px;display:none;background:#D1FAE5;border-radius:8px;margin-bottom:15px}
+.ads{border-top:2px solid var(--lt);padding-top:20px;margin-top:10px}
+.ads h3{color:var(--p);font-size:1.1rem;margin-bottom:15px}
+.cli{background:var(--lt);border-radius:10px;padding:15px;margin-bottom:12px;position:relative}
+.cli h4{color:var(--pd);font-size:.95rem}
+.cli p{color:var(--g);font-size:.85rem;margin-top:4px}
+.cli .cdt{font-size:.75rem;color:#9CA3AF;margin-top:5px}
+.cli .cdl{position:absolute;top:10px;left:10px;background:#EF4444;color:#fff;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.8rem}
+[dir="ltr"] .cli .cdl{left:auto;right:10px}
+.ncl{text-align:center;color:#9CA3AF;padding:20px}
+
+@media(max-width:1024px){.ftg{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+.nm{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:var(--w);flex-direction:column;gap:0;padding:90px 30px 30px;transition:var(--tr);box-shadow:-8px 0 40px rgba(0,0,0,.1);z-index:1001;align-items:flex-start}
+[dir="ltr"] .nm{right:auto;left:-100%}
+.nm.open{right:0}
+[dir="ltr"] .nm.open{right:auto;left:0}
+.nm a{color:var(--d)!important;font-size:1.1rem;padding:12px 0}
+.burger{display:flex}
+.abg,.cog{grid-template-columns:1fr}
+.fg2{grid-template-columns:1fr}
+.stb{grid-template-columns:1fr 1fr;margin:-50px 20px 0}
+.st{border-left:none;border-bottom:1px solid var(--lt)}
+.plg{grid-template-columns:1fr}
+.galg{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+.ftg{grid-template-columns:1fr}
+.ap{width:100%;right:-100%}
+[dir="ltr"] .ap{left:-100%}
+}
+@media(max-width:480px){.galg{grid-template-columns:1fr}.stb{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader"><div class="loader-c"><div class="palm">🌴</div><p data-t="ld">جاري التحميل...</p></div></div>
+
+<nav class="nav" id="nav">
+<div class="nw">
+<a href="#" class="logo">🌴 <span id="sn">Djerba</span> <i data-t="lo">ترافل</i></a>
+<div class="nm" id="nm">
+<a href="#home" data-t="n1">الرئيسية</a>
+<a href="#about" data-t="n2">عن جربة</a>
+<a href="#places" data-t="n3">الأماكن</a>
+<a href="#act" data-t="n4">الأنشطة</a>
+<a href="#gal" data-t="n5">الصور</a>
+<a href="#contact" data-t="n6">اتصل بنا</a>
+<div class="ls"><button class="lb on" onclick="sL('ar')">عربي</button><button class="lb" onclick="sL('fr')">FR</button><button class="lb" onclick="sL('en')">EN</button></div>
+</div>
+<button class="burger" onclick="document.getElementById('nm').classList.toggle('open')"><span></span><span></span><span></span></button>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="hi">
+<div class="ht" data-t="badge">🇹🇳 أجمل جزر البحر المتوسط</div>
+<h1 data-t="hT">اكتشف سحر <em>جربة</em></h1>
+<p data-t="hD">جزيرة الأحلام التونسية حيث تلتقي الشواطئ الذهبية بالتاريخ العريق والثقافة الفريدة</p>
+<div class="hbs">
+<a href="#places" class="btn bs" data-t="hb1">🗺️ استكشف الأماكن</a>
+<a href="#about" class="btn bg" data-t="hb2">📖 اعرف المزيد</a>
+</div>
+</div>
+</section>
+
+<div class="stb rv">
+<div class="st"><div class="stn">514</div><div class="stl" data-t="s1">كم² المساحة</div></div>
+<div class="st"><div class="stn">125+</div><div class="stl" data-t="s2">كم شواطئ</div></div>
+<div class="st"><div class="stn">3000+</div><div class="stl" data-t="s3">سنة تاريخ</div></div>
+<div class="st"><div class="stn">300+</div><div class="stl" data-t="s4">يوم شمس ☀️</div></div>
+</div>
+
+<section class="abs" id="about">
+<div class="wrap">
+<div class="abg">
+<div class="abi rv"><img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=800&q=80" alt="Djerba"><div class="bf" data-t="abB">🏆 وجهة عالمية</div></div>
+<div class="abt rv">
+<h3 data-t="abT">جزيرة جربة – لوتس الأرض</h3>
+<p data-t="abP1">تُعرف جربة بجزيرة الأحلام ولوتس الأرض كما أسماها الإغريق. تقع في جنوب شرق تونس وهي أكبر جزيرة في شمال أفريقيا بمساحة 514 كم².</p>
+<p data-t="abP2">تتميز بشواطئها الرملية الذهبية وأسواقها التقليدية وتراثها المعماري الفريد الذي يمزج بين الحضارات الأمازيغية والعربية والإفريقية.</p>
+<div class="fg2">
+<div class="fi2"><div class="ic">🏖️</div><span data-t="f1">شواطئ خلابة</span></div>
+<div class="fi2"><div class="ic">🕌</div><span data-t="f2">معالم تاريخية</span></div>
+<div class="fi2"><div class="ic">🍽️</div><span data-t="f3">مطبخ أصيل</span></div>
+<div class="fi2"><div class="ic">🎨</div><span data-t="f4">فن وثقافة</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="places">
+<div class="wrap">
+<div class="sh rv"><h2 data-t="plT">📍 أبرز المعالم السياحية</h2><div class="bar"></div><p data-t="plD">اكتشف أجمل الأماكن في جربة</p></div>
+<div class="plg">
+<div class="pc rv"><div class="ib"><img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=700&q=80" alt=""><span class="tg" data-t="tg1">⭐ الأكثر زيارة</span></div><div class="inf"><h3 data-t="p1n">حومة السوق</h3><p data-t="p1d">العاصمة التجارية للجزيرة بأزقتها وأسواقها التقليدية والحرف اليدوية.</p><div class="stars">⭐⭐⭐⭐⭐ 4.8</div></div></div>
+<div class="pc rv"><div class="ib"><img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=700&q=80" alt=""><span class="tg" data-t="tg2">🏖️ شاطئ</span></div><div class="inf"><h3 data-t="p2n">شاطئ سيدي محرز</h3><p data-t="p2d">أجمل شواطئ جربة برماله البيضاء ومياهه الفيروزية الصافية.</p><div class="stars">⭐⭐⭐⭐⭐ 4.9</div></div></div>
+<div class="pc rv"><div class="ib"><img src="https://images.unsplash.com/photo-1585951237318-9ea5e175b891?w=700&q=80" alt=""><span class="tg" data-t="tg3">🕌 تاريخي</span></div><div class="inf"><h3 data-t="p3n">كنيس الغريبة</h3><p data-t="p3d">أقدم كنيس يهودي في أفريقيا يعود لأكثر من 2600 سنة.</p><div class="stars">⭐⭐⭐⭐ 4.6</div></div></div>
+<div class="pc rv"><div class="ib"><img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=700&q=80" alt=""><span class="tg" data-t="tg4">🌅 طبيعة</span></div><div class="inf"><h3 data-t="p4n">رأس الرمل</h3><p data-t="p4d">لسان رملي ساحر يمتد في البحر لمشاهدة غروب الشمس.</p><div class="stars">⭐⭐⭐⭐⭐ 4.7</div></div></div>
+<div class="pc rv"><div class="ib"><img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=700&q=80" alt=""><span class="tg" data-t="tg5">🏛️ تراث</span></div><div class="inf"><h3 data-t="p5n">المنازل الجربية</h3><p data-t="p5d">منازل تقليدية بهندسة معمارية أمازيغية فريدة.</p><div class="stars">⭐⭐⭐⭐ 4.5</div></div></div>
+<div class="pc rv"><div class="ib"><img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=700&q=80" alt=""><span class="tg" data-t="tg6">🎨 فن</span></div><div class="inf"><h3 data-t="p6n">جربة هود</h3><p data-t="p6d">متحف مفتوح بجداريات فنية مذهلة من فنانين عالميين.</p><div class="stars">⭐⭐⭐⭐⭐ 4.8</div></div></div>
+</div>
+</div>
+</section>
+
+<section class="acs" id="act">
+<div class="wrap">
+<div class="sh rv"><h2 data-t="acT">🎯 أنشطة لا تفوّتها</h2><div class="bar"></div><p data-t="acD">تجارب فريدة في جربة</p></div>
+<div class="acg">
+<div class="ac rv"><div class="aci">🏄</div><h3 data-t="a1t">رياضات مائية</h3><p data-t="a1d">تزلج وغوص ورحلات بحرية شراعية</p></div>
+<div class="ac rv"><div class="aci">🐪</div><h3 data-t="a2t">رحلات الصحراء</h3><p data-t="a2d">كثبان رملية على ظهر الجمال مع الغروب</p></div>
+<div class="ac rv"><div class="aci">🛍️</div><h3 data-t="a3t">التسوق التقليدي</h3><p data-t="a3d">حرف يدوية وتوابل ومنسوجات تونسية</p></div>
+<div class="ac rv"><div class="aci">🍲</div><h3 data-t="a4t">تذوق المأكولات</h3><p data-t="a4d">بريك وكسكسي جربي وأسماك طازجة</p></div>
+<div class="ac rv"><div class="aci">🧖</div><h3 data-t="a5t">السبا والاسترخاء</h3><p data-t="a5d">حمامات طين وعلاجات تجميل تقليدية</p></div>
+<div class="ac rv"><div class="aci">🐦</div><h3 data-t="a6t">مراقبة الطيور</h3><p data-t="a6d">فلامنغو وردي في المحميات الطبيعية</p></div>
+</div>
+</div>
+</section>
+
+<section id="gal">
+<div class="wrap">
+<div class="sh rv"><h2 data-t="gaT">🖼️ معرض الصور</h2><div class="bar"></div><p data-t="gaD">لقطات من سحر جربة</p></div>
+<div class="galg">
+<div class="gi rv"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80" alt=""><div class="go"><span data-t="g1">🏖️ شواطئ ذهبية</span></div></div>
+<div class="gi rv"><img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=700&q=80" alt=""><div class="go"><span data-t="g2">🌅 غروب ساحر</span></div></div>
+<div class="gi rv"><img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=700&q=80" alt=""><div class="go"><span data-t="g3">💎 مياه فيروزية</span></div></div>
+<div class="gi rv"><img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=700&q=80" alt=""><div class="go"><span data-t="g4">🎨 فن الشارع</span></div></div>
+<div class="gi rv"><img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=700&q=80" alt=""><div class="go"><span data-t="g5">🌿 طبيعة خلابة</span></div></div>
+<div class="gi rv"><img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=700&q=80" alt=""><div class="go"><span data-t="g6">🏛️ تراث عريق</span></div></div>
+</div>
+</div>
+</section>
+
+<section class="cos" id="contact">
+<div class="wrap">
+<div class="sh rv"><h2 data-t="coT">📞 تواصل معنا</h2><div class="bar"></div><p data-t="coD">نسعد بتواصلك</p></div>
+<div class="cog">
+<form class="cf rv" id="cF">
+<input type="text" id="fN" data-ph="ph1" placeholder="الاسم الكامل" required>
+<input type="email" id="fE" data-ph="ph2" placeholder="البريد الإلكتروني" required>
+<input type="tel" id="fP" data-ph="ph3" placeholder="رقم الهاتف">
+<textarea id="fM" data-ph="ph4" placeholder="رسالتك..." required></textarea>
+<button type="submit" class="btn bs" style="justify-content:center;width:100%" data-t="bS">✉️ إرسال</button>
+</form>
+<div class="cc rv">
+<div class="cd"><div class="ci">📍</div><div><h4 data-t="cl1">الموقع</h4><p id="dA" data-t="cA">جزيرة جربة، مدنين، تونس</p></div></div>
+<div class="cd"><div class="ci">📧</div><div><h4 data-t="cl2">البريد</h4><p id="dE">info@djerba-travel.com</p></div></div>
+<div class="cd"><div class="ci">📱</div><div><h4 data-t="cl3">الهاتف</h4><p id="dP" dir="ltr">+216 XX XXX XXX</p></div></div>
+<div class="cd"><div class="ci">🕐</div><div><h4 data-t="cl4">ساعات العمل</h4><p data-t="cH">كل يوم 8:00 - 20:00</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="ms"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107068.0!2d10.85!3d33.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13aaa5e1973c609d%3A0x5c7f8b8f8e8e8e8e!2sDjerba!5e0!3m2!1sen!2stn!4v1700000000000" allowfullscreen loading="lazy"></iframe></div>
+
+<footer>
+<div class="ftg">
+<div class="ftc"><h3>🌴 <span id="fn1">Djerba Travel</span></h3><p data-t="ftD">دليلك السياحي الشامل لجزيرة جربة التونسية.</p><div class="soc"><a href="#">📘</a><a href="#">📸</a><a href="#">🐦</a><a href="#">🎬</a></div></div>
+<div class="ftc"><h3 data-t="ftL">روابط</h3><a href="#home" data-t="n1">الرئيسية</a><a href="#about" data-t="n2">عن جربة</a><a href="#places" data-t="n3">الأماكن</a><a href="#contact" data-t="n6">اتصل بنا</a></div>
+<div class="ftc"><h3 data-t="ftP">أماكن</h3><a href="#places" data-t="p1n">حومة السوق</a><a href="#places" data-t="p2n">سيدي محرز</a><a href="#places" data-t="p3n">الغريبة</a><a href="#places" data-t="p6n">جربة هود</a></div>
+<div class="ftc"><h3 data-t="ftI">معلومات</h3><a href="#" data-t="i1">كيفية الوصول</a><a href="#" data-t="i2">أفضل وقت</a><a href="#" data-t="i3">نصائح</a><a href="#" data-t="i4">فنادق</a></div>
+</div>
+<div class="ftb"><p>© 2025 <span id="fn2">Djerba Travel</span> – <span data-t="ftR">جميع الحقوق محفوظة</span> | <span data-t="ftM">صُنع بـ ❤️</span></p></div>
+</footer>
+
+<button class="tot" id="tot" onclick="window.scrollTo({top:0})">⬆️</button>
+<button class="at" onclick="oA()">⚙️</button>
+<div class="obg" id="oBg" onclick="cA()"></div>
+
+<div class="ap" id="aP">
+<button class="ca" onclick="cA()">✕</button>
+<h2>⚙️ <span data-t="adT">لوحة التحكم</span></h2>
+<div id="lA">
+<div class="adg"><label data-t="adPw">كلمة المرور</label><input type="password" id="aPw" placeholder="admin123"></div>
+<button class="asv" onclick="aLi()">🔐 <span data-t="adLi">دخول</span></button>
+</div>
+<div id="aCt" style="display:none">
+<div class="amsg" id="sM">✅</div>
+<div class="adg"><label data-t="adNm">اسم الموقع</label><input type="text" id="aN"></div>
+<div class="adg"><label data-t="adAd">العنوان</label><input type="text" id="aAd"></div>
+<div class="adg"><label data-t="adPh">الهاتف</label><input type="text" id="aPh"></div>
+<div class="adg"><label data-t="adEm">البريد</label><input type="text" id="aEm"></div>
+<button class="asv" onclick="sA()">💾 <span data-t="adSv">حفظ</span></button>
+<div class="ads">
+<div class="adg"><label data-t="adNp">كلمة مرور جديدة</label><input type="password" id="nPw"></div>
+<button class="asv" onclick="cPw()">🔒 <span data-t="adCp">تغيير</span></button>
+</div>
+<div class="ads">
+<h3>👥 <span data-t="adCl">رسائل العملاء</span> (<span id="cCt">0</span>)</h3>
+<div id="cLs"></div>
+</div>
+<button class="asv" style="background:var(--sun);margin-top:20px" onclick="aLo()">🚪 <span data-t="adLo">خروج</span></button>
+</div>
+</div>
+
+<script>
+var D={
+ar:{ld:"جاري التحميل...",lo:"ترافل",n1:"الرئيسية",n2:"عن جربة",n3:"الأماكن",n4:"الأنشطة",n5:"الصور",n6:"اتصل بنا",badge:"🇹🇳 أجمل جزر البحر المتوسط",hT:'اكتشف سحر <em>جربة</em>',hD:"جزيرة الأحلام التونسية حيث تلتقي الشواطئ الذهبية بالتاريخ العريق والثقافة الفريدة",hb1:"🗺️ استكشف الأماكن",hb2:"📖 اعرف المزيد",s1:"كم² المساحة",s2:"كم شواطئ",s3:"سنة تاريخ",s4:"يوم شمس ☀️",abB:"🏆 وجهة عالمية",abT:"جزيرة جربة – لوتس الأرض",abP1:'تُعرف جربة بـ "جزيرة الأحلام" و"لوتس الأرض" كما أسماها الإغريق. تقع في جنوب شرق تونس وهي أكبر جزيرة في شمال أفريقيا بمساحة 514 كم².',abP2:"تتميز بشواطئها الرملية الذهبية وأسواقها التقليدية وتراثها المعماري الفريد الذي يمزج بين الحضارات الأمازيغية والعربية والإفريقية.",f1:"شواطئ خلابة",f2:"معالم تاريخية",f3:"مطبخ أصيل",f4:"فن وثقافة",plT:"📍 أبرز المعالم السياحية",plD:"اكتشف أجمل الأماكن في جربة",tg1:"⭐ الأكثر زيارة",tg2:"🏖️ شاطئ",tg3:"🕌 تاريخي",tg4:"🌅 طبيعة",tg5:"🏛️ تراث",tg6:"🎨 فن",p1n:"حومة السوق",p1d:"العاصمة التجارية للجزيرة بأزقتها وأسواقها التقليدية والحرف اليدوية.",p2n:"شاطئ سيدي محرز",p2d:"أجمل شواطئ جربة برماله البيضاء ومياهه الفيروزية الصافية.",p3n:"كنيس الغريبة",p3d:"أقدم كنيس يهودي في أفريقيا يعود لأكثر من 2600 سنة.",p4n:"رأس الرمل",p4d:"لسان رملي ساحر يمتد في البحر لمشاهدة غروب الشمس.",p5n:"المنازل الجربية",p5d:"منازل تقليدية بهندسة معمارية أمازيغية فريدة.",p6n:"جربة هود",p6d:"متحف مفتوح بجداريات فنية مذهلة من فنانين عالميين.",acT:"🎯 أنشطة لا تفوّتها",acD:"تجارب فريدة في جربة",a1t:"رياضات مائية",a1d:"تزلج وغوص ورحلات بحرية شراعية",a2t:"رحلات الصحراء",a2d:"كثبان رملية على ظهر الجمال مع الغروب",a3t:"التسوق التقليدي",a3d:"حرف يدوية وتوابل ومنسوجات تونسية",a4t:"تذوق المأكولات",a4d:"بريك وكسكسي جربي وأسماك طازجة",a5t:"السبا والاسترخاء",a5d:"حمامات طين وعلاجات تجميل تقليدية",a6t:"مراقبة الطيور",a6d:"فلامنغو وردي في المحميات الطبيعية",gaT:"🖼️ معرض الصور",gaD:"لقطات من سحر جربة",g1:"🏖️ شواطئ ذهبية",g2:"🌅 غروب ساحر",g3:"💎 مياه فيروزية",g4:"🎨 فن الشارع",g5:"🌿 طبيعة خلابة",g6:"🏛️ تراث عريق",coT:"📞 تواصل معنا",coD:"نسعد بتواصلك",ph1:"الاسم الكامل",ph2:"البريد الإلكتروني",ph3:"رقم الهاتف",ph4:"رسالتك...",bS:"✉️ إرسال",cl1:"الموقع",cA:"جزيرة جربة، مدنين، تونس",cl2:"البريد",cl3:"الهاتف",cl4:"ساعات العمل",cH:"كل يوم 8:00 - 20:00",ftD:"دليلك السياحي الشامل لجزيرة جربة التونسية.",ftL:"روابط",ftP:"أماكن",ftI:"معلومات",i1:"كيفية الوصول",i2:"أفضل وقت",i3:"نصائح",i4:"فنادق",ftR:"جميع الحقوق محفوظة",ftM:"صُنع بـ ❤️",al:"شكراً! سنرد عليك قريباً 🌴",adT:"لوحة التحكم",adPw:"كلمة المرور",adLi:"دخول",adNm:"اسم الموقع",adAd:"العنوان",adPh:"الهاتف",adEm:"البريد",adSv:"حفظ",adNp:"كلمة مرور جديدة",adCp:"تغيير",adCl:"رسائل العملاء",adLo:"خروج"},
+fr:{ld:"Chargement...",lo:"Travel",n1:"Accueil",n2:"À propos",n3:"Lieux",n4:"Activités",n5:"Galerie",n6:"Contact",badge:"🇹🇳 La plus belle île méditerranéenne",hT:'Découvrez <em>Djerba</em>',hD:"L'île de rêve tunisienne où plages dorées, histoire et culture se rencontrent",hb1:"🗺️ Explorer",hb2:"📖 En savoir plus",s1:"km² superficie",s2:"km plages",s3:"ans d'histoire",s4:"jours soleil ☀️",abB:"🏆 Destination mondiale",abT:"Djerba – L'Île des Lotophages",abP1:"Djerba, l'île de rêve depuis l'Antiquité grecque, est la plus grande île d'Afrique du Nord (514 km²), au sud-est de la Tunisie.",abP2:"Plages dorées, marchés animés et patrimoine architectural unique mêlant civilisations amazighe, arabe et africaine.",f1:"Plages magnifiques",f2:"Monuments historiques",f3:"Cuisine authentique",f4:"Art et culture",plT:"📍 Lieux incontournables",plD:"Les plus beaux endroits de Djerba",tg1:"⭐ Le plus visité",tg2:"🏖️ Plage",tg3:"🕌 Historique",tg4:"🌅 Nature",tg5:"🏛️ Patrimoine",tg6:"🎨 Art",p1n:"Houmt Souk",p1d:"Capitale commerciale aux ruelles étroites, marchés traditionnels et artisanat.",p2n:"Plage Sidi Mahrez",p2d:"La plus belle plage de Djerba, sable blanc et eaux turquoise cristallines.",p3n:"Synagogue El Ghriba",p3d:"La plus ancienne synagogue d'Afrique, datant de plus de 2600 ans.",p4n:"Ras Rmel",p4d:"Langue de sable enchantée pour admirer le coucher du soleil.",p5n:"Les Houch",p5d:"Maisons traditionnelles d'architecture amazighe unique.",p6n:"Djerbahood",p6d:"Musée à ciel ouvert avec fresques d'artistes internationaux.",acT:"🎯 Activités incontournables",acD:"Expériences uniques à Djerba",a1t:"Sports nautiques",a1d:"Ski nautique, plongée et voile",a2t:"Excursions désert",a2d:"Dunes à dos de chameau au coucher du soleil",a3t:"Shopping traditionnel",a3d:"Artisanat, épices et tissages tunisiens",a4t:"Gastronomie",a4d:"Brik, couscous djerbien et poisson frais",a5t:"Spa et détente",a5d:"Bains de boue et soins traditionnels",a6t:"Observation d'oiseaux",a6d:"Flamants roses dans les réserves naturelles",gaT:"🖼️ Galerie photos",gaD:"La magie de Djerba en images",g1:"🏖️ Plages dorées",g2:"🌅 Coucher de soleil",g3:"💎 Eaux turquoise",g4:"🎨 Street Art",g5:"🌿 Nature sublime",g6:"🏛️ Patrimoine",coT:"📞 Contactez-nous",coD:"Nous serons ravis de vous répondre",ph1:"Nom complet",ph2:"E-mail",ph3:"Téléphone",ph4:"Votre message...",bS:"✉️ Envoyer",cl1:"Emplacement",cA:"Île de Djerba, Médenine, Tunisie",cl2:"E-mail",cl3:"Téléphone",cl4:"Horaires",cH:"Tous les jours 8h-20h",ftD:"Votre guide touristique complet pour Djerba.",ftL:"Liens",ftP:"Lieux",ftI:"Infos",i1:"Comment arriver",i2:"Meilleure période",i3:"Conseils",i4:"Hôtels",ftR:"Tous droits réservés",ftM:"Fait avec ❤️",al:"Merci ! Nous vous répondrons bientôt 🌴",adT:"Administration",adPw:"Mot de passe",adLi:"Connexion",adNm:"Nom du site",adAd:"Adresse",adPh:"Téléphone",adEm:"E-mail",adSv:"Enregistrer",adNp:"Nouveau mot de passe",adCp:"Changer",adCl:"Messages clients",adLo:"Déconnexion"},
+en:{ld:"Loading...",lo:"Travel",n1:"Home",n2:"About",n3:"Places",n4:"Activities",n5:"Gallery",n6:"Contact",badge:"🇹🇳 Most Beautiful Mediterranean Island",hT:'Discover <em>Djerba</em>',hD:"The Tunisian dream island where golden beaches meet ancient history and unique culture",hb1:"🗺️ Explore",hb2:"📖 Learn More",s1:"km² area",s2:"km beaches",s3:"years history",s4:"sunny days ☀️",abB:"🏆 World Destination",abT:"Djerba – Island of Lotus Eaters",abP1:'Djerba, the "Dream Island" since ancient Greek times, is North Africa\'s largest island (514 km²), in southeastern Tunisia.',abP2:"Golden beaches, vibrant traditional markets, and unique heritage blending Amazigh, Arab, and African civilizations.",f1:"Stunning Beaches",f2:"Historical Landmarks",f3:"Authentic Cuisine",f4:"Art & Culture",plT:"📍 Top Attractions",plD:"Discover Djerba's most beautiful places",tg1:"⭐ Most Visited",tg2:"🏖️ Beach",tg3:"🕌 Historic",tg4:"🌅 Nature",tg5:"🏛️ Heritage",tg6:"🎨 Art",p1n:"Houmt Souk",p1d:"The commercial capital with narrow alleys, traditional markets and handicrafts.",p2n:"Sidi Mahrez Beach",p2d:"Djerba's most beautiful beach with white sand and crystal turquoise waters.",p3n:"El Ghriba Synagogue",p3d:"Africa's oldest synagogue, dating back over 2,600 years.",p4n:"Ras Rmel",p4d:"An enchanting sand spit perfect for watching the sunset.",p5n:"Djerbian Houses",p5d:"Traditional houses with unique Amazigh architecture.",p6n:"Djerbahood",p6d:"Open-air museum with stunning murals by international artists.",acT:"🎯 Must-Do Activities",acD:"Unique experiences in Djerba",a1t:"Water Sports",a1d:"Skiing, diving and sailing excursions",a2t:"Desert Tours",a2d:"Sand dunes on camelback at sunset",a3t:"Traditional Shopping",a3d:"Handicrafts, spices and Tunisian textiles",a4t:"Food Tasting",a4d:"Brik, Djerbian couscous and fresh seafood",a5t:"Spa & Relaxation",a5d:"Natural mud baths and traditional treatments",a6t:"Bird Watching",a6d:"Pink flamingos in natural reserves",gaT:"🖼️ Photo Gallery",gaD:"Snapshots of Djerba's charm",g1:"🏖️ Golden Beaches",g2:"🌅 Stunning Sunset",g3:"💎 Turquoise Waters",g4:"🎨 Street Art",g5:"🌿 Lush Nature",g6:"🏛️ Ancient Heritage",coT:"📞 Contact Us",coD:"We'd love to hear from you",ph1:"Full Name",ph2:"Email",ph3:"Phone",ph4:"Your message...",bS:"✉️ Send",cl1:"Location",cA:"Djerba Island, Medenine, Tunisia",cl2:"Email",cl3:"Phone",cl4:"Hours",cH:"Every day 8AM-8PM",ftD:"Your complete Djerba travel guide.",ftL:"Links",ftP:"Places",ftI:"Info",i1:"How to Get There",i2:"Best Time to Visit",i3:"Travel Tips",i4:"Hotels",ftR:"All Rights Reserved",ftM:"Made with ❤️",al:"Thank you! We'll reply soon 🌴",adT:"Admin Panel",adPw:"Password",adLi:"Login",adNm:"Site Name",adAd:"Address",adPh:"Phone",adEm:"Email",adSv:"Save",adNp:"New Password",adCp:"Change",adCl:"Client Messages",adLo:"Logout"}
+};
+var cl=localStorage.getItem('dj_l')||'ar';
+function sL(l){cl=l;localStorage.setItem('dj_l',l);ap()}
+function ap(){
+var t=D[cl],h=document.documentElement;
+h.dir=cl==='ar'?'rtl':'ltr';h.lang=cl;
+document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(t[k])e.innerHTML=t[k]});
+document.querySelectorAll('[data-ph]').forEach(function(e){var k=e.getAttribute('data-ph');if(t[k])e.placeholder=t[k]});
+document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');var m={ar:'عربي',fr:'FR',en:'EN'};if(b.textContent.trim()===m[cl])b.classList.add('on')});
+lAd()
+}
+function lAd(){
+var d=JSON.parse(localStorage.getItem('dj_a')||'{}'),t=D[cl];
+if(d.n){document.getElementById('sn').textContent=d.n;document.getElementById('fn1').textContent=d.n+' '+t.lo;document.getElementById('fn2').textContent=d.n+' '+t.lo}
+if(d.a)document.getElementById('dA').textContent=d.a;
+if(d.p)document.getElementById('dP').textContent=d.p;
+if(d.e)document.getElementById('dE').textContent=d.e
+}
+function oA(){document.getElementById('aP').classList.add('open');document.getElementById('oBg').classList.add('show');if(sessionStorage.getItem('dj_au'))sAC()}
+function cA(){document.getElementById('aP').classList.remove('open');document.getElementById('oBg').classList.remove('show')}
+function aLi(){var p=localStorage.getItem('dj_pw')||'admin123';if(document.getElementById('aPw').value===p){sessionStorage.setItem('dj_au','1');sAC()}else alert('❌')}
+function sAC(){document.getElementById('lA').style.display='none';document.getElementById('aCt').style.display='block';var d=JSON.parse(localStorage.getItem('dj_a')||'{}');if(d.n)document.getElementById('aN').value=d.n;if(d.a)document.getElementById('aAd').value=d.a;if(d.p)document.getElementById('aPh').value=d.p;if(d.e)document.getElementById('aEm').value=d.e;rCl()}
+function sA(){localStorage.setItem('dj_a',JSON.stringify({n:document.getElementById('aN').value,a:document.getElementById('aAd').value,p:document.getElementById('aPh').value,e:document.getElementById('aEm').value}));lAd();var m=document.getElementById('sM');m.style.display='block';setTimeout(function(){m.style.display='none'},2500)}
+function cPw(){var n=document.getElementById('nPw').value;if(n.length<3){alert('Min 3!');return}localStorage.setItem('dj_pw',n);document.getElementById('nPw').value='';var m=document.getElementById('sM');m.style.display='block';setTimeout(function(){m.style.display='none'},2500)}
+function aLo(){sessionStorage.removeItem('dj_au');document.getElementById('lA').style.display='block';document.getElementById('aCt').style.display='none';document.getElementById('aPw').value='';cA()}
+function rCl(){var c=JSON.parse(localStorage.getItem('dj_c')||'[]');document.getElementById('cCt').textContent=c.length;if(!c.length){document.getElementById('cLs').innerHTML='<div class="ncl">📭</div>';return}document.getElementById('cLs').innerHTML=c.map(function(x,i){return '<div class="cli"><button class="cdl" onclick="dCl('+i+')">✕</button><h4>'+x.n+' • '+x.e+'</h4><p>'+x.m+'</p><p class="cdt">'+(x.p?'📱 '+x.p+' | ':'')+'🕐 '+x.d+' | 🌐 '+x.l.toUpperCase()+'</p></div>'}).join('')}
+function dCl(i){var c=JSON.parse(localStorage.getItem('dj_c')||'[]');c.splice(i,1);localStorage.setItem('dj_c',JSON.stringify(c));rCl()}
+document.getElementById('cF').addEventListener('submit',function(e){e.preventDefault();var c={n:document.getElementById('fN').value,e:document.getElementById('fE').value,p:document.getElementById('fP').value,m:document.getElementById('fM').value,d:new Date().toLocaleString(),l:cl};var ls=JSON.parse(localStorage.getItem('dj_c')||'[]');ls.unshift(c);localStorage.setItem('dj_c',JSON.stringify(ls));alert(D[cl].al);this.reset()});
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('sc',scrollY>80);document.getElementById('tot').classList.toggle('show',scrollY>500)});
+document.querySelectorAll('.nm a[href^="#"]').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nm').classList.remove('open')})});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv').forEach(function(e){ob.observe(e)});
+window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('done')},800)});
+ap();
+</script>
+</body>
+</html>
